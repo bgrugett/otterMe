@@ -9,6 +9,7 @@ const Toy = require('../models/toy');
 const Otter = require('../models/otter');
 
 // Routes
+;
 
 routerToy.post('/', (req, res, next) => {
   Toy.create(req.body)

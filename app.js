@@ -11,11 +11,10 @@ const routerAPI = require('./api');
 
 // App creation
 const app = express();
-const PORT = 1337;
 
 // Middleware
 
-//   Logging 
+//   Logging
 app.use(volleyball);
 
 //   Parsing
@@ -31,12 +30,22 @@ app.use((err, req, res, next) => {
     res.status(err.status || 500).send(err.message || 'Internal server error');
 });
 
+//db.sync({force: true})
+db.sync({})
+  .then(function() {
+    console.log('Connected to db');
+    app.listen(1337, function() {
+      console.log('Server is listening on port 1337');
+    });
+  })
+    .catch(console.error);
+
 // Start the server
-app.listen(PORT, () => {
-  console.log(`We're listening online on port ${PORT}`);
-  console.log('Connecting to the database...');
-  db.sync()
-  .then(() => {
-    console.log('Connected.');
-  });
-});
+// app.listen(PORT, () => {
+//   console.log(`We're listening online on port ${PORT}`);
+//   console.log('Connecting to the database...');
+//   db.sync({force: true})
+//   .then(() => {
+//     console.log('Connected.');
+//   });
+// });

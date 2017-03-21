@@ -9,6 +9,7 @@ const Otter = require('../models/otter');
 const Family = require('../models/family');
 const Toy = require('../models/toy');
 
+
 // Routes
 
 routerOtter.post('/', (req, res, next) => {
@@ -36,7 +37,7 @@ routerOtter.get('/:otterId/addFamily/:familyId', (req, res, next) => {
   Otter.findById(req.params.otterId)
     .then((foundOtter) => {
       otter = foundOtter;
-      return Family.findById(req.params.familyId); 
+      return Family.findById(req.params.familyId);
     })
     .then((foundFamily) => {
       otter.setFamily(foundFamily);
